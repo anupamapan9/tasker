@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddTask from "./AddTask";
 import SearchTasks from "./SearchTasks";
 import TaskAction from "./TaskAction";
 import TaskLists from "./TaskLists";
@@ -14,6 +15,11 @@ export default function TaskBoard() {
     isFavorite: true,
   };
   const [tasks, setTasks] = useState([defaultTask]);
+  const [isOpen, setIsOpen] = useState(false);
+  function handelAddTask(task) {
+    // setIsOpen(!isOpen);
+    console.log(task);
+  }
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
@@ -21,7 +27,8 @@ export default function TaskBoard() {
         <SearchTasks />
         {/* <!-- Search Box Ends --> */}
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
-          <TaskAction />
+          {isOpen && <AddTask onSave={handelAddTask} />}
+          <TaskAction setIsOpen={setIsOpen} />
           <TaskLists tasks={tasks} />
         </div>
       </div>

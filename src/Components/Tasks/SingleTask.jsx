@@ -1,7 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 export default function SingleTask({ task }) {
-  console.log(task);
   const { title, description, tags, priority, isFavorite } = task;
   return (
     <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
