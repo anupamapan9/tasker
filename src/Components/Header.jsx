@@ -1,4 +1,3 @@
-import React from "react";
 import LogoLWS from "../assets/lws-logo-en.svg";
 export default function Header() {
   return (
