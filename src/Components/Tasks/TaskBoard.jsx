@@ -16,10 +16,11 @@ export default function TaskBoard() {
   };
   const [tasks, setTasks] = useState([defaultTask]);
   const [isOpen, setIsOpen] = useState(false);
-  function handelAddTask(task) {
-    // setIsOpen(!isOpen);
-    console.log(task);
+  function handelAddTask(newTask) {
+    setTasks([...tasks, newTask]);
+    setIsOpen(false);
   }
+  console.log(tasks);
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
