@@ -1,7 +1,7 @@
 import React from "react";
 import SingleTask from "./SingleTask";
 
-export default function TaskLists({ tasks }) {
+export default function TaskLists({ tasks, taskToUpdate }) {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -27,7 +27,7 @@ export default function TaskLists({ tasks }) {
         </thead>
         <tbody>
           {tasks.map((task) => (
-            <SingleTask key={task.id} task={task} />
+            <SingleTask key={task.id} task={task} taskToUpdate={taskToUpdate} />
           ))}
         </tbody>
       </table>

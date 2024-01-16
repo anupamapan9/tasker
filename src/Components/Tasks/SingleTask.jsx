@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-export default function SingleTask({ task }) {
+export default function SingleTask({ task, taskToUpdate }) {
   const { title, description, tags, priority, isFavorite } = task;
   return (
     <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
@@ -26,7 +26,9 @@ export default function SingleTask({ task }) {
       <td>
         <div className="flex items-center justify-center space-x-3">
           <button className="text-red-500">Delete</button>
-          <button className="text-blue-500">Edit</button>
+          <button onClick={() => taskToUpdate(task)} className="text-blue-500">
+            Edit
+          </button>
         </div>
       </td>
     </tr>

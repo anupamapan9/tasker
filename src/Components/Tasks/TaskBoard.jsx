@@ -16,11 +16,27 @@ export default function TaskBoard() {
   };
   const [tasks, setTasks] = useState([defaultTask]);
   const [isOpen, setIsOpen] = useState(false);
-  function handelAddTask(newTask) {
-    setTasks([...tasks, newTask]);
+  const [forUpdateTask, setForUpdateTask] = useState(null);
+  function handelAddTask(newTask, isAdd) {
+    if (isAdd) {
+      setTasks([...tasks, newTask]);
+    } else {
+      setTasks(
+        tasks.map((task) => {
+          if (task.id === newTask.id) {
+            return newTask;
+          }
+          return task;
+        })
+      );
+    }
+    console.log(tasks);
     setIsOpen(false);
   }
-  console.log(tasks);
+  function taskToUpdate(task) {
+    setForUpdateTask(task);
+    setIsOpen(true);
+  }
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
@@ -28,9 +44,11 @@ export default function TaskBoard() {
         <SearchTasks />
         {/* <!-- Search Box Ends --> */}
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
-          {isOpen && <AddTask onSave={handelAddTask} />}
+          {isOpen && (
+            <AddTask onSave={handelAddTask} forUpdateTask={forUpdateTask} />
+          )}
           <TaskAction setIsOpen={setIsOpen} />
-          <TaskLists tasks={tasks} />
+          <TaskLists tasks={tasks} taskToUpdate={taskToUpdate} />
         </div>
       </div>
     </section>
